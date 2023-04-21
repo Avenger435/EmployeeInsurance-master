@@ -42,22 +42,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		newEmpEntity.setAddresses(addressList);
 		newEmpEntity.setInsurance(employeeEntity.getInsurance());
 
-		return modelMapper.map(employeeRepo.save(newEmpEntity), RestEmployee.class);
-
-	}
-
-	@Override
-	public RestInsurance getInsurnaceByEmpId(Long id) {
-
-		RestInsurance restInsurance = new RestInsurance();
-		Optional<Employee> employeeEntity;
 		try {
-			employeeEntity = employeeRepo.findById(id);
-			return modelMapper.map(employeeEntity.get().getInsurance(), RestInsurance.class);
-
+			restEmployee = modelMapper.map(employeeRepo.save(newEmpEntity), RestEmployee.class);
+			restEmployee.setEmployeeResponseMsg("success");
+			return restEmployee;
 		} catch (Exception e) {
-			restInsurance.setInsuranceErrorMsg("No Insurance plan found for the employee with id:- " + id);
-			return restInsurance;
+			System.out.println(e.getMessage().toString());
+			restEmployee.setEmployeeResponseMsg("failure");
+			return restEmployee;
 		}
 
 	}
@@ -78,6 +70,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 			addresses.add(restAddress);
 		}
 		return addresses;
+	}
+
+	@Override
+	public RestInsurance getInsurnaceByEmpId(Long id) {
+
+		RestInsurance restInsurance = new RestInsurance();
+		Optional<Employee> employeeEntity;
+		try {
+			employeeEntity = employeeRepo.findById(id);
+			return modelMapper.map(employeeEntity.get().getInsurance(), RestInsurance.class);
+
+		} catch (Exception e) {
+			restInsurance.setInsuranceErrorMsg("No Insurance plan found for the employee with id:- " + id);
+			return restInsurance;
+		}
+
 	}
 
 }

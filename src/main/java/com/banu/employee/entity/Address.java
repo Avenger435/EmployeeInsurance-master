@@ -30,23 +30,23 @@ public class Address {
 	@Column(name = "address_name")
 	private String address_name;
 
-//	@Column(name = "address_type")
-//	private String address_type;
-//
-//	@Column(name = "street")
-//	private String street;
-//
-//	@Column(name = "landmark")
-//	private String landmark;
-//
-//	@Column(name = "city")
-//	private String city;
-//
-//	@Column(name = "state")
-//	private String state;
-//
-//	@Column(name = "pincode")
-//	private String pincode;
+	@Column(name = "address_type")
+	private String address_type;
+
+	@Column(name = "street")
+	private String street;
+
+	@Column(name = "landmark")
+	private String landmark;
+
+	@Column(name = "city")
+	private String city;
+
+	@Column(name = "state")
+	private String state;
+
+	@Column(name = "pincode")
+	private String pincode;
 
 	@JoinColumn(name = "employee_id")
 	@ManyToOne

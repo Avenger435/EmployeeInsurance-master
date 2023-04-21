@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.banu.employee.rest.RestEmployee;
 import com.banu.employee.rest.RestInsurance;
 import com.banu.employee.service.EmployeeService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/v1/employee")
 public class EmployeeController {
@@ -38,6 +40,7 @@ public class EmployeeController {
 	public List<RestAddress> getAddresses(@PathVariable(value = "id") Long id) {
 		return employeeService.getAddressesByEmpId(id);
 	}
+
 
 	@PostMapping(value = "/post")
 	private ResponseEntity<RestEmployee> post(@RequestBody RestEmployee restEmployee) {

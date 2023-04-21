@@ -25,6 +25,6 @@ public class RestEmployee {
 	private String department;
 	private List<RestAddress> addresses;
 	private RestInsurance insurance;
-	private String employeeErrorMsg;
+	private String employeeResponseMsg;
 
 }
